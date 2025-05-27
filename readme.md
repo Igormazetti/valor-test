@@ -1,4 +1,4 @@
-# Vite Host + Vite Remote + Rspack Remote + Webpack Remote
+# Valor technical test
 
 This repository demonstrates a microfrontends architecture using multiple build tools (Vite, and Webpack) working together. The main goal of this project is to serve as a reference implementation for deploying microfrontends on the [Zephyr](https://zephyr-cloud.io/) platform.
 
