@@ -1,17 +1,22 @@
-# Vite Host + Vite Remote + Rspack Remote + Webpack Remote 
+# Vite Host + Vite Remote + Rspack Remote + Webpack Remote
 
-[Documentation](https://docs.zephyr-cloud.io/recipes/vite-rspack-webpack-mf) for this example.
+This repository demonstrates a microfrontends architecture using multiple build tools (Vite, and Webpack) working together. The main goal of this project is to serve as a reference implementation for deploying microfrontends on the [Zephyr](https://zephyr-cloud.io/) platform.
 
-![image](./image.png)
+## Overview
 
-To run this example:
+- **Microfrontends**: Each subproject (host and remotes) is built with a different tool, showcasing interoperability.
+- **Deployment**: Designed for seamless deployment and integration on the Zephyr platform.
+- **Reference**: Follows the [official Zephyr documentation](https://docs.zephyr-cloud.io/recipes/vite-rspack-webpack-mf).
 
-In `zephyr-mono`'s root directory, run each command in succession:
+## Getting Started
 
+In the root directory, run the following commands in order:
+
+```bash
+pnpm install
+pnpm build
 ```
-pnpm i
-pnpm --filter vite-remote run build
-pnpm --filter vite_rspack run build
-pnpm --filter vite_webpack run build
-pnpm --filter vite-host run build
-```
+
+## Resources
+
+- [Zephyr Documentation: Vite + Rspack + Webpack Microfrontends](https://docs.zephyr-cloud.io/recipes/vite-rspack-webpack-mf)
