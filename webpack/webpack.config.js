@@ -1,39 +1,39 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 //const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const path = require('path');
-const Dotenv = require('dotenv-webpack');
-const { withZephyr } = require('zephyr-webpack-plugin');
-const { ModuleFederationPlugin } = require('@module-federation/enhanced/webpack');
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
+const { withZephyr } = require("zephyr-webpack-plugin");
+const { ModuleFederationPlugin } = require("@module-federation/enhanced/webpack");
 
-const deps = require('./package.json').dependencies;
+const deps = require("./package.json").dependencies;
 
-const printCompilationMessage = require('./compilation.config.js');
+const printCompilationMessage = require("./compilation.config.js");
 
 module.exports = (_, argv) =>
   withZephyr()({
     output: {
-      publicPath: 'auto',
+      publicPath: "auto",
     },
 
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },
 
     devServer: {
       port: 8080,
       historyApiFallback: true,
-      watchFiles: [path.resolve(__dirname, 'src')],
+      watchFiles: [path.resolve(__dirname, "src")],
       onListening: function (devServer) {
         const port = devServer.server.address().port;
 
-        printCompilationMessage('compiling', port);
+        printCompilationMessage("compiling", port);
 
-        devServer.compiler.hooks.done.tap('OutputMessagePlugin', (stats) => {
+        devServer.compiler.hooks.done.tap("OutputMessagePlugin", (stats) => {
           setImmediate(() => {
             if (stats.hasErrors()) {
-              printCompilationMessage('failure', port);
+              printCompilationMessage("failure", port);
             } else {
-              printCompilationMessage('success', port);
+              printCompilationMessage("success", port);
             }
           });
         });
@@ -44,24 +44,24 @@ module.exports = (_, argv) =>
       rules: [
         {
           test: /\.(svg|png)$/,
-          type: 'asset',
+          type: "asset",
         },
         {
           test: /\.m?js/,
-          type: 'javascript/auto',
+          type: "javascript/auto",
           resolve: {
             fullySpecified: false,
           },
         },
         {
           test: /\.(css|s[ac]ss)$/i,
-          use: ['style-loader', 'css-loader', 'postcss-loader'],
+          use: ["style-loader", "css-loader", "postcss-loader"],
         },
         {
           test: /\.(ts|tsx|js|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
           },
         },
       ],
@@ -69,18 +69,18 @@ module.exports = (_, argv) =>
 
     plugins: [
       new ModuleFederationPlugin({
-        name: 'vite_webpack',
-        filename: 'remoteEntry.js',
+        name: "vite_webpack",
+        filename: "remoteEntry.js",
         exposes: {
-          './Image': './src/Image',
+          "./ProjectsCard": "./src/components/ProjectsCard",
         },
         shared: {
           react: { singleton: true },
-          'react-dom': { singleton: true },
+          "react-dom": { singleton: true },
         },
       }),
       new HtmlWebPackPlugin({
-        template: './src/index.html',
+        template: "./src/index.html",
       }),
       new Dotenv(),
     ],
