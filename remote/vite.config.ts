@@ -1,16 +1,16 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { withZephyr } from 'vite-plugin-zephyr';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { withZephyr } from "vite-plugin-zephyr";
 
 const mfConfig = {
-  name: 'vite_remote',
-  filename: 'remoteEntry.js',
+  name: "vite_remote",
+  filename: "remoteEntry.js",
   exposes: {
-    './Button': './src/Button',
+    "./AboutCard": "./src/AboutCard",
   },
   shared: {
     react: { singleton: true },
-    'react-dom': { singleton: true },
+    "react-dom": { singleton: true },
   },
 };
 
@@ -23,6 +23,6 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'chrome89',
+    target: "chrome89",
   },
 });

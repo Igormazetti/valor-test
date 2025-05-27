@@ -1,7 +1,7 @@
-import Button from './Button';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import AboutCard from "./AboutCard";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <Button />
+      <AboutCard />
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
   );
